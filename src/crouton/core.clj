@@ -23,9 +23,7 @@
      (.getValue attr)])
   TextNode
   (as-clojure [text-node]
-    (.text text-node))
-  Object
-  (as-clojure [x] x))
+    (.text text-node)))
 
 (defn parse
   "Reads and parses the HTML from the supplied source, which map be anything
