@@ -1,6 +1,6 @@
 (ns crouton.core
   (:import [org.jsoup Jsoup]
-           [org.jsoup.nodes Document Element]))
+           [org.jsoup.nodes Document Element TextNode]))
 
 (defprotocol AsClojure
   (^:private as-clojure [x] "Turn a Java class into its Clojure equivalent"))
@@ -13,7 +13,12 @@
   (as-clojure [element]
     {:tag (-> element .tagName keyword)
      :attrs {}
-     :content (->> element .children (map as-clojure))}))
+     :content (->> element .childNodes (map as-clojure))})
+  TextNode
+  (as-clojure [text-node]
+    (.text text-node))
+  Object
+  (as-clojure [x] x))
 
 (defn parse [source]
   (-> source
