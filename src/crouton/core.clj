@@ -29,5 +29,6 @@
 
 (defn parse [source]
   (-> source
+      slurp
       Jsoup/parse
       as-clojure))
