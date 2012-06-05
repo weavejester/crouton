@@ -27,7 +27,12 @@
   Object
   (as-clojure [x] x))
 
-(defn parse [source]
+(defn parse
+  "Reads and parses the HTML from the supplied source, which map be anything
+  that can be consumed by clojure.core/slurp. Returns a tree compatible with
+  that returned by clojure.xml/parse, i.e. a map that has the keys :tag, :attrs
+  and :content."
+  [source]
   (-> source
       slurp
       Jsoup/parse
