@@ -1,4 +1,4 @@
-(ns crouton.core
+(ns crouton.html
   (:import [org.jsoup Jsoup]
            [org.jsoup.nodes Attribute Attributes Document Element TextNode]))
 

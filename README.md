@@ -16,7 +16,7 @@ Crouton provides a way of parsing a HTML file from a slurp-able
 source:
 
 ```clojure
-(require '[crouton.core :as html])
+(require '[crouton.html :as html])
 
 (html/parse "http://example.com")
 ```

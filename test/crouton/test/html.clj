@@ -1,6 +1,6 @@
-(ns crouton.core-test
+(ns crouton.test.html
   (:use clojure.test
-        crouton.core))
+        crouton.html))
 
 (deftest a-test
   (testing "FIXME, I fail."
