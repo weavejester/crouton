@@ -1,6 +1,6 @@
 (ns crouton.html
   (:import [org.jsoup Jsoup]
-           [org.jsoup.nodes Attribute Attributes Document Element TextNode]))
+           [org.jsoup.nodes Attribute Attributes DataNode Document Element TextNode]))
 
 (defprotocol AsClojure
   (^:private as-clojure [x] "Turn a Java class into its Clojure equivalent"))
@@ -23,7 +23,10 @@
      (.getValue attr)])
   TextNode
   (as-clojure [text-node]
-    (.text text-node)))
+    (.text text-node))
+  DataNode
+  (as-clojure [data-node]
+    (.getWholeData data-node)))
 
 (defn parse
   "Reads and parses the HTML from the supplied source, which map be anything
