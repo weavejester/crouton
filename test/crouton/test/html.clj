@@ -2,6 +2,13 @@
   (:use clojure.test
         crouton.html))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(defn- string-stream [s]
+  (java.io.ByteArrayInputStream. (.getBytes s)))
+
+(deftest test-parse
+  (testing "Basic parsing"
+    (is (= (parse (string-stream "<html><head></head><body></body>"))
+           {:tag :html
+            :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content nil}]}))))
