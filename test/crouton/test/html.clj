@@ -6,7 +6,7 @@
   (java.io.ByteArrayInputStream. (.getBytes s)))
 
 (deftest test-parse
-  (testing "Basic parsing"
+  (testing "Elements"
     (is (= (parse (stream "<html><head></head><body></body></html>"))
            {:tag :html :attrs nil
             :content [{:tag :head :attrs nil :content nil}
@@ -18,4 +18,10 @@
                       {:tag :body :attrs nil
                        :content [{:tag :div
                                   :attrs {:class "foo"}
-                                  :content nil}]}]}))))
+                                  :content nil}]}]})))
+  (testing "Text"
+    (is (= (parse (stream "<html><body>Hello World</body></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil
+                       :content ["Hello World"]}]}))))
