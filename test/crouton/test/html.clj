@@ -2,13 +2,20 @@
   (:use clojure.test
         crouton.html))
 
-(defn- string-stream [s]
+(defn- stream [s]
   (java.io.ByteArrayInputStream. (.getBytes s)))
 
 (deftest test-parse
   (testing "Basic parsing"
-    (is (= (parse (string-stream "<html><head></head><body></body>"))
-           {:tag :html
-            :attrs nil
+    (is (= (parse (stream "<html><head></head><body></body></html>"))
+           {:tag :html :attrs nil
             :content [{:tag :head :attrs nil :content nil}
-                      {:tag :body :attrs nil :content nil}]}))))
+                      {:tag :body :attrs nil :content nil}]})))
+  (testing "Attributes"
+    (is (= (parse (stream "<html><body><div class=\"foo\"></div></body></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil
+                       :content [{:tag :div
+                                  :attrs {:class "foo"}
+                                  :content nil}]}]}))))
