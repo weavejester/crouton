@@ -24,4 +24,12 @@
            {:tag :html :attrs nil
             :content [{:tag :head :attrs nil :content nil}
                       {:tag :body :attrs nil
-                       :content ["Hello World"]}]}))))
+                       :content ["Hello World"]}]})))
+  (testing "Scripts"
+    (is (= (parse (stream "<html><head><script>foo();</script></head></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil
+                       :content [{:tag :script
+                                  :attrs nil
+                                  :content ["foo();"]}]}
+                      {:tag :body :attrs nil :content nil}]}))))
