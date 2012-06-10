@@ -32,4 +32,9 @@
                        :content [{:tag :script
                                   :attrs nil
                                   :content ["foo();"]}]}
-                      {:tag :body :attrs nil :content nil}]}))))
+                      {:tag :body :attrs nil :content nil}]})))
+  (testing "Comments"
+    (is (= (parse (stream "<html><body>Foo<!--bar-->Baz</html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content ["FooBaz"]}]}))))
