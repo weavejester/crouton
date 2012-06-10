@@ -8,7 +8,7 @@ Crouton is a HTML parsing library for Clojure that uses [JSoup][1].
 
 Add the following dependency to your `project.clj` file:
 
-    [crouton "0.1.0-SNAPSHOT"]
+    [crouton "0.1.0"]
 
 ## Usage
 
