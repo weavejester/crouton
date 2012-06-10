@@ -37,4 +37,19 @@
     (is (= (parse (stream "<html><body>Foo<!--bar-->Baz</html>"))
            {:tag :html :attrs nil
             :content [{:tag :head :attrs nil :content nil}
-                      {:tag :body :attrs nil :content ["FooBaz"]}]}))))
+                      {:tag :body :attrs nil :content ["FooBaz"]}]})))
+  (testing "Doctypes"
+    (is (= (parse (stream "<!DOCTYPE html><html></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content nil}]})))
+  (testing "XML declarations"
+    (is (= (parse (stream "<?xml version=\"1.0\" encoding=\"UTF-8\"><html></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content nil}]})))
+  (testing "Character entities"
+    (is (= (parse (stream "<html><body>x &amp; y</body></html>"))
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content ["x & y"]}]}))))
