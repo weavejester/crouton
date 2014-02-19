@@ -53,3 +53,11 @@
            {:tag :html :attrs nil
             :content [{:tag :head :attrs nil :content nil}
                       {:tag :body :attrs nil :content ["x & y"]}]}))))
+
+(deftest test-parse-string
+  (testing "Elements"
+    (is (= (parse-string "<html><head></head><body></body></html>")
+           {:tag :html :attrs nil
+            :content [{:tag :head :attrs nil :content nil}
+                      {:tag :body :attrs nil :content nil}]}))))
+

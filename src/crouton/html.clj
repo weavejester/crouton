@@ -58,3 +58,8 @@
       slurp
       Jsoup/parse
       as-clojure))
+
+(defn parse-string
+  "Reads and parses the HTML from a suplied source text."
+  [string]
+  (as-clojure (Jsoup/parse string)))
