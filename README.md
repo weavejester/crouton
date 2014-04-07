@@ -24,6 +24,13 @@ source:
 The parsed result is a DOM tree compatible with that produced by
 `clojure.xml/parse`.
 
+If you have a string, rather than a file, URL or input-stream, you can
+use `parse-string`:
+
+```clojure
+(html/parse-string "<html><head></head><body></body></html>")
+```
+
 ## License
 
 Copyright © 2014 James Reeves
