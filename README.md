@@ -26,6 +26,6 @@ The parsed result is a DOM tree compatible with that produced by
 
 ## License
 
-Copyright © 2012 James Reeves
+Copyright © 2014 James Reeves
 
 Distributed under the Eclipse Public License, the same as Clojure.
